@@ -20,3 +20,9 @@ Creating a slider that have picture and name on homepage
 - Type 5 => Image Blob
 - Type 6 => Rich Text
 5. The slider is now configurable by setting the value on custom data value
+
+# Features
+The project is built with
+1. Spring boot as the core
+2. Swagger as the API docs (Please comment the profile section under application properties to disable / enable Swagger for production launch)
+3. MySQL as database
