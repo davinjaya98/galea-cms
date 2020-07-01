@@ -12,6 +12,7 @@ public class CustomDataGroupBean {
 
     private int pageSettingId;
     private String cdGroupSequence;
+    private String cdGroupImage;
 
     // For Response
     private List<CustomDataBean> customDataList;
@@ -20,13 +21,14 @@ public class CustomDataGroupBean {
     }
 
     public CustomDataGroupBean(Integer cdGroupId, String cdGroupName, String cdGroupDescription, int pageSettingId,
-            List<CustomDataBean> customDataList, String cdGroupSequence) {
+            List<CustomDataBean> customDataList, String cdGroupSequence, String cdGroupImage) {
         this.cdGroupId = cdGroupId;
         this.cdGroupName = cdGroupName;
         this.cdGroupDescription = cdGroupDescription;
         this.pageSettingId = pageSettingId;
         this.customDataList = customDataList;
         this.cdGroupSequence = cdGroupSequence;
+        this.cdGroupImage = cdGroupImage;
     }
 
     public Integer getCdGroupId() {
@@ -75,5 +77,13 @@ public class CustomDataGroupBean {
 
     public void setCdGroupSequence(String cdGroupSequence) {
         this.cdGroupSequence = cdGroupSequence;
+    }
+
+    public String getCdGroupImage() {
+        return this.cdGroupImage;
+    }
+
+    public void setCdGroupImage(String cdGroupImage) {
+        this.cdGroupImage = cdGroupImage;
     }
 }

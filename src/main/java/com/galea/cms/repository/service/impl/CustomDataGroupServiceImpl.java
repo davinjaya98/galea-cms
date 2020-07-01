@@ -151,6 +151,7 @@ public class CustomDataGroupServiceImpl implements CustomDataGroupService {
                 entity.setCdGroupName(requestBean.getCdGroupName());
                 entity.setCdGroupDescription(requestBean.getCdGroupDescription());
                 entity.setCdGroupSequence(requestBean.getCdGroupSequence());
+                entity.setCdGroupImage(requestBean.getCdGroupImage());
                 entity.setModifyDt(new Date());
 
                 customDataGroupDAO.update(entity);

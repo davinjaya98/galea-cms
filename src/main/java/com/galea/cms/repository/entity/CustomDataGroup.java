@@ -27,18 +27,20 @@ public class CustomDataGroup extends GeneralCreateModify implements Serializable
     private List<CustomData> customDataList = new ArrayList<CustomData>();
     private PageSetting pageSetting;
     private String cdGroupSequence;
+    private String cdGroupImage;
 
     public CustomDataGroup() {
     }
 
     public CustomDataGroup(int cdGroupId, String cdGroupName, String cdGroupDescription,
-            List<CustomData> customDataList, PageSetting pageSetting, String cdGroupSequence) {
+            List<CustomData> customDataList, PageSetting pageSetting, String cdGroupSequence, String cdGroupImage) {
         this.cdGroupId = cdGroupId;
         this.cdGroupName = cdGroupName;
         this.cdGroupDescription = cdGroupDescription;
         this.customDataList = customDataList;
         this.pageSetting = pageSetting;
         this.cdGroupSequence = cdGroupSequence;
+        this.cdGroupImage = cdGroupImage;
     }
 
     @Id
@@ -96,5 +98,14 @@ public class CustomDataGroup extends GeneralCreateModify implements Serializable
 
     public void setCdGroupSequence(String cdGroupSequence) {
         this.cdGroupSequence = cdGroupSequence;
+    }
+
+    @Column(name = "cd_group_image")
+    public String getCdGroupImage() {
+        return this.cdGroupImage;
+    }
+
+    public void setCdGroupImage(String cdGroupImage) {
+        this.cdGroupImage = cdGroupImage;
     }
 }
