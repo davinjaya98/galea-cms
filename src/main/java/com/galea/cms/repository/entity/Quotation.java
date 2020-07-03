@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "quotation", catalog = "segosarem_db")
+@Table(name = "quotation", catalog = "galea_db")
 public class Quotation extends GeneralCreateModify implements Serializable {
 
 	private int quotationId;

@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "custom_data_value", catalog = "segosarem_db")
+@Table(name = "custom_data_value", catalog = "galea_db")
 public class CustomDataValue extends GeneralCreateModify implements Serializable {
 
 	private int cdValueId;

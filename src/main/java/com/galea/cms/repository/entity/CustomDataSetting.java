@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "custom_data_setting", catalog = "segosarem_db")
+@Table(name = "custom_data_setting", catalog = "galea_db")
 public class CustomDataSetting extends GeneralCreateModify implements Serializable {
 
     private int cdsId;

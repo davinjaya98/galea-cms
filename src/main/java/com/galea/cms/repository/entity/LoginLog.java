@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "login_log", catalog = "segosarem_db")
+@Table(name = "login_log", catalog = "galea_db")
 public class LoginLog extends GeneralCreateModify implements Serializable {
 
     private int logId;

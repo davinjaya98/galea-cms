@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "custom_data", catalog = "segosarem_db")
+@Table(name = "custom_data", catalog = "galea_db")
 public class CustomData extends GeneralCreateModify implements Serializable {
 
 	private int cdId;

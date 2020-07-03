@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "page_setting", catalog = "segosarem_db")
+@Table(name = "page_setting", catalog = "galea_db")
 public class PageSetting extends GeneralCreateModify implements Serializable {
 
     private int settingId;
