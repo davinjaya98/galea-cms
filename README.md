@@ -26,3 +26,10 @@ The project is built with
 1. Spring boot as the core
 2. Swagger as the API docs (Please comment the profile section under application properties to disable / enable Swagger for production launch)
 3. MySQL as database
+
+# Setup guide
+1. Install java
+2. Install maven
+3. Use command mvn clean install to compile the project on the root folder
+4. The jar file will be created under /target/.jar
+5. run java -jar target/galea-cms-0.0.1-SNAPSHOT.jar from the root folder
