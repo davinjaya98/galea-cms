@@ -29,8 +29,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Segosarem REST API")
-            .description("Segosarem REST API")
+        return new ApiInfoBuilder().title("Galea REST API")
+            .description("Galea REST API")
             .contact(new Contact("Paparadam Interactive Lab", "www.javaguides.net", "paparadam.interactivelab@gmail.com"))
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
