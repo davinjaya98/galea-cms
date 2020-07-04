@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.galea.cms.repository.service.AuthenticationService;
 import com.galea.cms.repository.service.CommonServiceUtils;
@@ -124,6 +125,7 @@ public class PageSettingAPI {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/getAllValueByPageSettingKey", consumes = { "application/json" }, produces = {
 			"application/json" })
+	@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:80", "https://localhost:80"})
 	public GeneralWsResponseBean getAllValueByPageSettingKey(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody PageSettingBean requestBean) {
 
