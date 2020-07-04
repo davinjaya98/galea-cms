@@ -11,6 +11,7 @@ public class CustomDataGroupBean {
     private String cdGroupDescription;
 
     private int pageSettingId;
+    private String pageSettingKey;
     private String cdGroupSequence;
     private String cdGroupImage;
 
@@ -21,7 +22,7 @@ public class CustomDataGroupBean {
     }
 
     public CustomDataGroupBean(Integer cdGroupId, String cdGroupName, String cdGroupDescription, int pageSettingId,
-            List<CustomDataBean> customDataList, String cdGroupSequence, String cdGroupImage) {
+            List<CustomDataBean> customDataList, String cdGroupSequence, String cdGroupImage, String pageSettingKey) {
         this.cdGroupId = cdGroupId;
         this.cdGroupName = cdGroupName;
         this.cdGroupDescription = cdGroupDescription;
@@ -29,6 +30,7 @@ public class CustomDataGroupBean {
         this.customDataList = customDataList;
         this.cdGroupSequence = cdGroupSequence;
         this.cdGroupImage = cdGroupImage;
+        this.pageSettingKey = pageSettingKey;
     }
 
     public Integer getCdGroupId() {
@@ -85,5 +87,13 @@ public class CustomDataGroupBean {
 
     public void setCdGroupImage(String cdGroupImage) {
         this.cdGroupImage = cdGroupImage;
+    }
+
+    public String getPageSettingKey() {
+        return this.pageSettingKey;
+    }
+
+    public void setPageSettingKey(String pageSettingKey) {
+        this.pageSettingKey = pageSettingKey;
     }
 }

@@ -83,4 +83,18 @@ public class CustomDataGroupDAOImpl implements CustomDataGroupDAO {
 		return null;
 	}
 
+	@Override
+	public List<CustomDataGroup> getCdGroupByPageStgKey(String key) {
+		String query = "from CustomDataGroup cdg where cdg.pageSetting.pageKey = '" + key + "' AND cdg.status='"
+				+ SystemConstant.ACTIVE + "'";
+
+		List<CustomDataGroup> entityList = getSession().createQuery(query).list();
+
+		if (entityList != null && !entityList.isEmpty()) {
+			return entityList;
+		}
+
+		return null;
+	}
+
 }

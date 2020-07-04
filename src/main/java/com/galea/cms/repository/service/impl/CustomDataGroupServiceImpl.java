@@ -93,6 +93,35 @@ public class CustomDataGroupServiceImpl implements CustomDataGroupService {
     }
 
     @Override
+    public GeneralWsResponseBean getCdGroupByPageStgKey(String key) {
+        GeneralWsResponseBean responseBean = CommonServiceUtils.generateResponseBean();
+        try {
+            List<CustomDataGroup> entityList = customDataGroupDAO.getCdGroupByPageStgKey(key);
+
+            if (entityList != null && !entityList.isEmpty()) {
+                List<CustomDataGroupBean> beanList = new ArrayList<CustomDataGroupBean>();
+                for (CustomDataGroup entity : entityList) {
+                    // CustomDataGroupBean bean = new DozerBeanMapper().map(entity, CustomDataGroupBean.class);
+                    CustomDataGroupBean bean = new CustomDataGroupBean();
+                    bean.setCdGroupId(entity.getCdGroupId());
+                    bean.setCdGroupName(entity.getCdGroupName());
+                    bean.setCdGroupSequence(entity.getCdGroupSequence());
+                    bean.setCdGroupImage(entity.getCdGroupImage());
+                    // bean.setPageSettingId(entity.getPageSetting().getSettingId());
+                    beanList.add(bean);
+                }
+
+                responseBean.setResponseObject(beanList);
+                responseBean = CommonServiceUtils.setResponseToSuccess(responseBean);
+            }
+        } catch (Exception e) {
+            responseBean.setResponseObject(e.getMessage());
+        }
+
+        return responseBean;
+    }
+
+    @Override
     public GeneralWsResponseBean getCustomDataGroupById(Integer id) {
         GeneralWsResponseBean responseBean = CommonServiceUtils.generateResponseBean();
         try {

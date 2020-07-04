@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +37,7 @@ public class CustomDataGroupAPI {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private ResourceBundle labels = ResourceBundle.getBundle("messages");
-	
+
 	// Services
 	@Autowired
 	CustomDataGroupService customDataGroupService;
@@ -47,25 +47,33 @@ public class CustomDataGroupAPI {
 	// Services
 
 	// Outlets
-	// @ApiOperation(value = "Get a list of custom data group", response = GeneralWsResponseBean.class)
-	// @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-	// 		@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-	// 		@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-	// 		@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	// @ApiOperation(value = "Get a list of custom data group", response =
+	// GeneralWsResponseBean.class)
+	// @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully
+	// retrieved list"),
+	// @ApiResponse(code = 401, message = "You are not authorized to view the
+	// resource"),
+	// @ApiResponse(code = 403, message = "Accessing the resource you were trying to
+	// reach is forbidden"),
+	// @ApiResponse(code = 404, message = "The resource you were trying to reach is
+	// not found") })
 	// @ResponseBody
-	// @RequestMapping(method = RequestMethod.POST, value = "/getcustomDataGroupList")
-	// public GeneralWsResponseBean getCustomDataGroupList(HttpServletRequest request, HttpServletResponse response) {
-		
-	// 	String token = request.getHeader("token");
-    //     String latestToken = authenticationService.getLatestToken();
-	// 	Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
-		
-	// 	if(allowContinue) {
-	// 		return (GeneralWsResponseBean) customDataGroupService.getAllCustomDataGroup();
-	// 	}
-	// 	else {
-	// 		return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
-	// 	}
+	// @RequestMapping(method = RequestMethod.POST, value =
+	// "/getcustomDataGroupList")
+	// public GeneralWsResponseBean getCustomDataGroupList(HttpServletRequest
+	// request, HttpServletResponse response) {
+
+	// String token = request.getHeader("token");
+	// String latestToken = authenticationService.getLatestToken();
+	// Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
+
+	// if(allowContinue) {
+	// return (GeneralWsResponseBean)
+	// customDataGroupService.getAllCustomDataGroup();
+	// }
+	// else {
+	// return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
+	// }
 	// }
 
 	// get csgroup by page setting id
@@ -78,32 +86,56 @@ public class CustomDataGroupAPI {
 	@RequestMapping(method = RequestMethod.POST, value = "/getCdGroupByPageStgId", consumes = { "application/json" })
 	public GeneralWsResponseBean getCdGroupByPageStgId(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody CustomDataGroupBean requestBean) {
-		
+
 		String token = request.getHeader("token");
 		String latestToken = authenticationService.getLatestToken();
 		Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
-		
-		if(allowContinue) {
+
+		if (allowContinue) {
 			return (GeneralWsResponseBean) customDataGroupService.getCdGroupByPageStgId(requestBean.getPageSettingId());
-		}
-		else {
+		} else {
 			return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
 		}
 	}
 	// get csgroup by page setting id
 
-	// @ApiOperation(value = "Get custom data group by id", response = GeneralWsResponseBean.class)
-	// @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully Get the details"),
-	// 		@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-	// 		@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-	// 		@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	// @ResponseBody
-	// @RequestMapping(method = RequestMethod.POST, value = "/getCustomDataGroupById", consumes = {
-	// 		"application/json" }, produces = { "application/json" })
-	// public GeneralWsResponseBean getCustomDataGroupById(HttpServletRequest request, HttpServletResponse response,
-	// 		@RequestBody CustomDataGroupBean requestBean) {
+	// Public API NO NEED AUTHENTICATION
+	// get csgroup by page setting key
+	@ApiOperation(value = "Get custom data group list by page setting key", response = GeneralWsResponseBean.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list by page setting key"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/getCdGroupByPageStgKey", consumes = { "application/json" })
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:80", "https://localhost:80" })
+	public GeneralWsResponseBean getCdGroupByPageStgKey(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody CustomDataGroupBean requestBean) {
 
-	// 	return (GeneralWsResponseBean) customDataGroupService.getCustomDataGroupById(requestBean.getCdGroupId());
+		return (GeneralWsResponseBean) customDataGroupService.getCdGroupByPageStgKey(requestBean.getPageSettingKey());
+	}
+	// get csgroup by page setting id
+
+	// @ApiOperation(value = "Get custom data group by id", response =
+	// GeneralWsResponseBean.class)
+	// @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully Get
+	// the details"),
+	// @ApiResponse(code = 401, message = "You are not authorized to view the
+	// resource"),
+	// @ApiResponse(code = 403, message = "Accessing the resource you were trying to
+	// reach is forbidden"),
+	// @ApiResponse(code = 404, message = "The resource you were trying to reach is
+	// not found") })
+	// @ResponseBody
+	// @RequestMapping(method = RequestMethod.POST, value =
+	// "/getCustomDataGroupById", consumes = {
+	// "application/json" }, produces = { "application/json" })
+	// public GeneralWsResponseBean getCustomDataGroupById(HttpServletRequest
+	// request, HttpServletResponse response,
+	// @RequestBody CustomDataGroupBean requestBean) {
+
+	// return (GeneralWsResponseBean)
+	// customDataGroupService.getCustomDataGroupById(requestBean.getCdGroupId());
 	// }
 
 	// Supposed to be for secure access only
@@ -121,11 +153,10 @@ public class CustomDataGroupAPI {
 		String token = request.getHeader("token");
 		String latestToken = authenticationService.getLatestToken();
 		Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
-		
-		if(allowContinue) {
+
+		if (allowContinue) {
 			return (GeneralWsResponseBean) customDataGroupService.addCustomDataGroup(requestBean);
-		}
-		else {
+		} else {
 			return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
 		}
 	}
@@ -144,11 +175,10 @@ public class CustomDataGroupAPI {
 		String token = request.getHeader("token");
 		String latestToken = authenticationService.getLatestToken();
 		Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
-		
-		if(allowContinue) {
+
+		if (allowContinue) {
 			return (GeneralWsResponseBean) customDataGroupService.updateCustomDataGroup(requestBean);
-		}
-		else {
+		} else {
 			return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
 		}
 	}
@@ -167,11 +197,10 @@ public class CustomDataGroupAPI {
 		String token = request.getHeader("token");
 		String latestToken = authenticationService.getLatestToken();
 		Boolean allowContinue = CommonAPIUtils.checkToken(latestToken, token);
-		
-		if(allowContinue) {
+
+		if (allowContinue) {
 			return (GeneralWsResponseBean) customDataGroupService.deleteCustomDataGroup(requestBean);
-		}
-		else {
+		} else {
 			return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
 		}
 	}

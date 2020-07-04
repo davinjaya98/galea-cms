@@ -19,4 +19,6 @@ public interface CustomDataGroupDAO {
 	public List<CustomDataGroup> getCdGroupByPageStdId(Integer id);
 
 	public CustomDataGroup getCustomDataGroupById(Integer id, Boolean searchActive);
+
+	public List<CustomDataGroup> getCdGroupByPageStgKey(String key);
 }

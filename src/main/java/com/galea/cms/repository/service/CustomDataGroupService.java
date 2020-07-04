@@ -12,6 +12,8 @@ public interface CustomDataGroupService {
 
     public GeneralWsResponseBean getCdGroupByPageStgId(Integer id);
 
+    public GeneralWsResponseBean getCdGroupByPageStgKey(String key);
+
     public GeneralWsResponseBean getCustomDataGroupById(Integer id);
 
     public GeneralWsResponseBean addCustomDataGroup(CustomDataGroupBean requestBean);
