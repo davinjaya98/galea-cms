@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
@@ -58,6 +59,7 @@ public class CustomDataValue extends GeneralCreateModify implements Serializable
     }
 
     @Column(name = "cd_value")
+    @Lob
     public byte[] getCdValue() {
         return this.cdValue;
     }

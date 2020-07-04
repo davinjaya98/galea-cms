@@ -1,5 +1,6 @@
 package com.galea.cms.repository.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -57,6 +58,12 @@ public class CommonServiceUtils {
             case SystemConstant.CUSTOM_DATA_SETTING_RICH_TEXT_WYSWYG:
                 parsedValue = new String(value);
                 break;
+            case SystemConstant.CUSTOM_DATA_SETTING_URL_PATH_MULTIPLE:
+                String tempParsedValue = new String(value);
+                List<String> valueList = Arrays.asList(tempParsedValue.split(","));
+                parsedValue = valueList;
+
+                break;
         }
 
         return parsedValue;
@@ -85,6 +92,9 @@ public class CommonServiceUtils {
                 parsedValue = value.getBytes();
                 break;
             case SystemConstant.CUSTOM_DATA_SETTING_RICH_TEXT_WYSWYG:
+                parsedValue = value.getBytes();
+                break;
+            case SystemConstant.CUSTOM_DATA_SETTING_URL_PATH_MULTIPLE:
                 parsedValue = value.getBytes();
                 break;
         }

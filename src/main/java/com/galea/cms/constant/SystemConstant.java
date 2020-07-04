@@ -23,4 +23,5 @@ public class SystemConstant {
     public static final int CUSTOM_DATA_SETTING_TEXTAREA = 4;
     public static final int CUSTOM_DATA_SETTING_IMAGE_BLOB = 5;
     public static final int CUSTOM_DATA_SETTING_RICH_TEXT_WYSWYG = 6;
+    public static final int CUSTOM_DATA_SETTING_URL_PATH_MULTIPLE = 7;
 }
