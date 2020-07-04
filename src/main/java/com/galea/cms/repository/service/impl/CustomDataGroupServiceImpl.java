@@ -107,6 +107,7 @@ public class CustomDataGroupServiceImpl implements CustomDataGroupService {
                     bean.setCdGroupName(entity.getCdGroupName());
                     bean.setCdGroupSequence(entity.getCdGroupSequence());
                     bean.setCdGroupImage(entity.getCdGroupImage());
+                    bean.setCdGroupDescription(entity.getCdGroupDescription());
                     // bean.setPageSettingId(entity.getPageSetting().getSettingId());
                     beanList.add(bean);
                 }
