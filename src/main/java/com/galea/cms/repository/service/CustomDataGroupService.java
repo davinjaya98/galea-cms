@@ -23,4 +23,7 @@ public interface CustomDataGroupService {
 
     // This one effectively removed it from db
     public GeneralWsResponseBean deleteCustomDataGroup(DeleteEntityReqBean requestBean);
+
+    public GeneralWsResponseBean getAllValueByCdGroupId(Integer id);
+
 }

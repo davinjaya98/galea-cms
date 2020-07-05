@@ -2,7 +2,9 @@ package com.galea.cms.repository.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -21,8 +23,9 @@ import com.galea.cms.repository.dao.CustomDataGroupDAO;
 import com.galea.cms.repository.dao.CustomDataDAO;
 import com.galea.cms.repository.dao.CustomDataValueDAO;
 import com.galea.cms.repository.dao.PageSettingDAO;
-
+import com.galea.cms.repository.entity.CustomData;
 import com.galea.cms.repository.entity.CustomDataGroup;
+import com.galea.cms.repository.entity.CustomDataValue;
 import com.galea.cms.repository.entity.PageSetting;
 import com.galea.cms.repository.service.CommonServiceUtils;
 import com.galea.cms.repository.service.CustomDataGroupService;
@@ -101,7 +104,8 @@ public class CustomDataGroupServiceImpl implements CustomDataGroupService {
             if (entityList != null && !entityList.isEmpty()) {
                 List<CustomDataGroupBean> beanList = new ArrayList<CustomDataGroupBean>();
                 for (CustomDataGroup entity : entityList) {
-                    // CustomDataGroupBean bean = new DozerBeanMapper().map(entity, CustomDataGroupBean.class);
+                    // CustomDataGroupBean bean = new DozerBeanMapper().map(entity,
+                    // CustomDataGroupBean.class);
                     CustomDataGroupBean bean = new CustomDataGroupBean();
                     bean.setCdGroupId(entity.getCdGroupId());
                     bean.setCdGroupName(entity.getCdGroupName());
@@ -206,6 +210,64 @@ public class CustomDataGroupServiceImpl implements CustomDataGroupService {
 
                 responseBean = CommonServiceUtils.setResponseToSuccess(responseBean);
             }
+        } catch (Exception e) {
+            responseBean.setResponseObject(e.getMessage());
+        }
+
+        return responseBean;
+    }
+
+    @Override
+    public GeneralWsResponseBean getAllValueByCdGroupId(Integer id) {
+        GeneralWsResponseBean responseBean = CommonServiceUtils.generateResponseBean();
+        try {
+            Map<String, Object> responseObj = new LinkedHashMap<String, Object>();
+            Map<String, Object> pageSettingValue = new LinkedHashMap<String, Object>();
+
+            // Get custom data group
+            CustomDataGroup customDataGroup = customDataGroupDAO.getCustomDataGroupById(id, false);
+            if (customDataGroup != null) {
+                // Set the cd group first
+                Map<String, Object> customDataGroupObject = new LinkedHashMap<String, Object>();
+                customDataGroupObject.put("name", customDataGroup.getCdGroupName());
+                customDataGroupObject.put("description", customDataGroup.getCdGroupDescription());
+                customDataGroupObject.put("image", customDataGroup.getCdGroupImage());
+
+                responseObj.put("cdGroup", customDataGroupObject);
+
+                // Get custom data
+                List<CustomData> customDataList = customDataGroup.getCustomDataList();
+
+                if (customDataList != null && !customDataList.isEmpty()) {
+                    for (CustomData customData : customDataList) {
+
+                        List<CustomDataValue> parentValueList = customData.getCdValueList();
+
+                        List<Map<String, Object>> valueMap = new ArrayList<Map<String, Object>>();
+
+                        if (parentValueList != null && !parentValueList.isEmpty()) {
+                            for (CustomDataValue parentValue : parentValueList) {
+                                List<CustomDataValue> childValueList = parentValue.getChildValueList();
+
+                                Map<String, Object> childMap = new LinkedHashMap<String, Object>();
+                                for (CustomDataValue childValue : childValueList) {
+                                    childMap.put(childValue.getCustomDataSetting().getCdsKey(),
+                                            CommonServiceUtils.parseValue(childValue.getCdValue(),
+                                                    childValue.getCustomDataSetting().getCdsType()));
+                                }
+                                valueMap.add(childMap);
+                            }
+                        }
+                        pageSettingValue.put(customData.getCdKey(), valueMap);
+                    }
+                }
+            }
+
+            responseObj.put("cdGroupValue", pageSettingValue);
+
+            responseBean.setResponseObject(responseObj);
+            responseBean = CommonServiceUtils.setResponseToSuccess(responseBean);
+
         } catch (Exception e) {
             responseBean.setResponseObject(e.getMessage());
         }

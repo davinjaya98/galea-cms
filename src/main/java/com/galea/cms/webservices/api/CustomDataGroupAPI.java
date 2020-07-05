@@ -204,4 +204,20 @@ public class CustomDataGroupAPI {
 			return CommonServiceUtils.generateResponseBeanWithUnauthorizedStatus();
 		}
 	}
+
+	// Public API NO NEED AUTHENTICATION
+	// get csgroup by page setting key
+	@ApiOperation(value = "Get all custom data value by custom data group id", response = GeneralWsResponseBean.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list by cd group id"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/getAllValueByCdGroupId", consumes = { "application/json" })
+	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:80", "https://localhost:80" })
+	public GeneralWsResponseBean getAllValueByCdGroupId(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody CustomDataGroupBean requestBean) {
+
+		return (GeneralWsResponseBean) customDataGroupService.getAllValueByCdGroupId(requestBean.getCdGroupId());
+	}
 }
