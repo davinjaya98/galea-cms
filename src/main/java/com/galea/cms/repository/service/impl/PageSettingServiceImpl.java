@@ -118,8 +118,8 @@ public class PageSettingServiceImpl implements PageSettingService {
                             // Logic to update custom data bean with a key value pair data from setting and
                             // value
                             for (CustomDataBean customDataBean : customDataBeanList) {
-                                CustomData customDataEntity = customDataDAO
-                                        .getCustomDataByKey(customDataBean.getCdKey(), true);
+                                CustomData customDataEntity = customDataDAO.getCustomDataById(customDataBean.getCdId(),
+                                        true);
 
                                 if (customDataEntity != null) {
                                     if (customDataEntity.getCdValueList() != null
@@ -136,6 +136,8 @@ public class PageSettingServiceImpl implements PageSettingService {
                                                 Map<String, Object> cdValueChildPair = new LinkedHashMap<String, Object>();
                                                 for (CustomDataValue childValue : parentValue.getChildValueList()) {
                                                     Map<String, Object> keyValuePair = new LinkedHashMap<String, Object>();
+                                                    keyValuePair.put("cdsId",
+                                                            childValue.getCustomDataSetting().getCdsId());
                                                     keyValuePair.put("fieldType",
                                                             childValue.getCustomDataSetting().getCdsType());
                                                     keyValuePair.put("value",

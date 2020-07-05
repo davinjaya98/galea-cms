@@ -109,7 +109,7 @@ public class CustomData extends GeneralCreateModify implements Serializable {
         this.cdSequence = cdSequence;
     }
 
-	@Column(name = "cd_key", unique = true)
+	@Column(name = "cd_key")
     public String getCdKey() {
         return this.cdKey;
     }
