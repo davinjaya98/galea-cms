@@ -125,7 +125,12 @@ public class PageSettingAPI {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/getAllValueByPageSettingKey", consumes = { "application/json" }, produces = {
 			"application/json" })
-	@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:80", "https://localhost:80"})
+	@CrossOrigin(origins = { 
+		"http://localhost:8080", 
+		"http://localhost:80", 
+		"https://localhost:80", 
+		"https://www.djw.world", 
+		"https://djw.world" })
 	public GeneralWsResponseBean getAllValueByPageSettingKey(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody PageSettingBean requestBean) {
 

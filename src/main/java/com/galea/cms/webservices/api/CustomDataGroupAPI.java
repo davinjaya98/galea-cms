@@ -108,7 +108,12 @@ public class CustomDataGroupAPI {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/getCdGroupByPageStgKey", consumes = { "application/json" })
-	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:80", "https://localhost:80" })
+	@CrossOrigin(origins = { 
+		"http://localhost:8080", 
+		"http://localhost:80", 
+		"https://localhost:80", 
+		"https://www.djw.world", 
+		"https://djw.world" })
 	public GeneralWsResponseBean getCdGroupByPageStgKey(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody CustomDataGroupBean requestBean) {
 
@@ -214,7 +219,12 @@ public class CustomDataGroupAPI {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/getAllValueByCdGroupId", consumes = { "application/json" })
-	@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:80", "https://localhost:80" })
+	@CrossOrigin(origins = { 
+		"http://localhost:8080", 
+		"http://localhost:80", 
+		"https://localhost:80", 
+		"https://www.djw.world", 
+		"https://djw.world" })
 	public GeneralWsResponseBean getAllValueByCdGroupId(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody CustomDataGroupBean requestBean) {
 
