@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -92,6 +92,12 @@ public class QuotationAPI {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/addQuotation", consumes = { "application/json" }, produces = {
 			"application/json" })
+    @CrossOrigin(origins = { 
+        "http://localhost:8080", 
+        "http://localhost:80", 
+        "https://localhost:80", 
+        "https://www.djw.world", 
+        "https://djw.world" })
 	public GeneralWsResponseBean addQuotation(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody QuotationBean requestBean) {
 
